@@ -16,6 +16,10 @@
     "48": "images/48.png",
     "128": "images/128.png"
   },
+  "content_scripts": [{
+    "matches": ["*://hackmd.io/*"],
+    "js": ["content_script.js"]
+  }],
   "permissions": [
     
   ],
