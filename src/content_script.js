@@ -1,5 +1,5 @@
 let triggle = false;
-let currentLanguage = "zh-TW";
+let currentLanguage = 'zh-TW';
 const hackmdInput = document.querySelector('textarea[tabindex="0"]');
 
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -8,19 +8,19 @@ recognition.interimResults = true;
 recognition.lang = currentLanguage;
 
 recognition.addEventListener('start', () => {
-  hackmdInput.dispatchEvent(new KeyboardEvent('keydown'))
-})
+  hackmdInput.dispatchEvent(new KeyboardEvent('keydown'));
+});
 
-recognition.addEventListener("result", (event) => {
+recognition.addEventListener('result', (event) => {
   const transcript = Array.from(event.results)
     .map((result) => result[0])
     .map((result) => result.transcript)
-    .join("");
+    .join('');
 
   hackmdInput.value = transcript;
 
   if (event.results[0].isFinal) {
-    hackmdInput.dispatchEvent(new KeyboardEvent('keydown', {'keyCode':13}))
+    hackmdInput.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 13 }));
   }
 });
 
