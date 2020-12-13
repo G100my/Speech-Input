@@ -16,12 +16,15 @@
     "48": "images/48.png",
     "128": "images/128.png"
   },
+  "background": {
+    "persistent": false,
+    "scripts": ["background_script.js"]
+  },
   "content_scripts": [{
     "matches": ["*://hackmd.io/*"],
     "js": ["content_script.js"]
   }],
   "permissions": [
-    
   ],
   "manifest_version": 2
 }
