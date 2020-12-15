@@ -1,6 +1,8 @@
+(function () {
 let triggle = false;
 let currentLanguage = 'zh-TW';
 const hackmdInput = document.querySelector('textarea[tabindex="0"]');
+if (hackmdInput === null) return;
 
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -55,3 +57,6 @@ li.addEventListener('click', function () {
     a.innerHTML = micMute;
   }
 });
+
+console.log("engine start~ ㄍㄥˊ ㄍㄥˊ ㄍㄥˊ")
+})()
