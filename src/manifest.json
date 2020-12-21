@@ -20,8 +20,5 @@
     "matches": ["*://hackmd.io/*"],
     "js": ["content_script.js"]
   }],
-  "permissions": [
-    
-  ],
   "manifest_version": 2
 }
