@@ -56,6 +56,4 @@
       a.innerHTML = micMute;
     }
   });
-
-  console.log('Script inject finished. Engine start ㄍㄥˊ ㄍㄥˊ ~ ~');
 })();
