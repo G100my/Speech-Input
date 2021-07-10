@@ -1,8 +1,10 @@
-# Speech input only for HackMD
+# Speech input
+
+v1.1 由 [Chris (@dwatow)](https://github.com/dwatow) 更新
 
 ## 為什麼想做這個 extension 的動機
 
-因為家裡的長輩不會使用鍵盤輸入，桌機要用手寫輸入也是需要買手寫板，而它的軟體大多適用於繪圖，不一定方便手寫輸入。
+Chris: 因為家裡的長輩不會使用鍵盤輸入，桌機要用手寫輸入也是需要買手寫板，而它的軟體大多適用於繪圖，不一定方便手寫輸入。
 
 ## 適用情境
 
