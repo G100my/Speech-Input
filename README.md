@@ -1,33 +1,56 @@
 # Speech input only for HackMD
 
-![安裝後畫面](https://i.imgur.com/7HcQVlY.jpg)
-
-安裝後在瀏覽 [Hack.MD](https://hackmd.io/) 的編輯頁面時，
-在網頁右上角會出現 ![mic icon](https://icons.getbootstrap.com/icons/mic-fill.svg) 圖示，
-點擊可以開啟/關閉 Speech Recognition。
-
-Speech Recognition 辨識完句子後會先換行再開始 recode
-
----
-
 ## 為什麼想做這個 extension 的動機
 
-目前所接觸到的研討會上大家習慣會使用 hack.md 開一個共筆筆記，
-由多人輪流接力把講者說的東西記錄下來。
-但是 Hack.MD 的編輯頁面有許多和一般輸入表單不一樣的行為，造成電腦上的語音輸入執行不順暢，
-所以大略觀察 Hack.MD 所監聽的事件，做出這個專屬 Hack.MD 上使用的 語音輸入 extension。
+因為家裡的長輩不會使用鍵盤輸入，桌機要用手寫輸入也是需要買手寫板，而它的軟體大多適用於繪圖，不一定方便手寫輸入。
 
----
+## 適用情境
+
+Speech Recognition 辨識完句子後會取代目前 focus 之處的文字。
+
+適合用在短暫關鍵字的辨識。
+
+## 安裝
+
+![安裝完畫面](https://i.imgur.com/si3dydG.png)
+
+安裝後在瀏覽器上會出現麥克風圖示。
+
+
+## 使用方式
+
+安裝完閉後，可以點擊 Open Mic 啟動/停止 Speech Recognition 語音辨識
+
+### 啟動
+
+1. 點擊右上方 mic icon 打開 popup 開啟麥克風: 啟動 Speech Recognition API，開始 Speech Recognition instance。
+2. 點擊一下你要放置文字的位置。ex: Google Search Input
+3. 對麥克風說話，就會成功把文字輸入到 focus 的位置
+4. 再次說話，會將第一次說的內容取代。
+
+### 停止
+
+停止 Speech Recognition API 的方式有兩種
+
+1. 可以透過語音「關閉」或「關掉」
+2. 點擊右上方 mic icon 打開 popup 停用麥克風
 
 ## 簡單說明
 
-1. 網頁載入時按照 manifest.json 所設定的匹配 URL
-2. 如果匹配到預先設定在 manifest.json 的 URL，則把 content_script inject 進去目前正在瀏覽的網頁
-3. 因為 extension match pattern 的規則，所以在 content_script 執行時判斷正在瀏覽的 Hack.MD 頁面是否存在編輯頁面會出現的特定元素。如果沒有，代表這個頁面不是編輯頁面，可能是首頁或者其他功能頁，跳出不執行剩餘步驟。
-4. 如果判斷是編輯頁面的話，則啟用瀏覽器原生的 Speech Recognition API，於編輯頁面右上方插入 mic icon 按鈕，負責開始、停止 Speech Recognition instance。
-5. Speech Recognition API 在開始、停止之間使用 dispatchEvent 模擬 Hack.MD 可能所監聽的事件
+Chrome Extension
 
----
+1. 網頁載入時按照 manifest.json 所設定的匹配 URL
+2. 如果匹配到預先設定在 manifest.json 的 URL，
+3. content_script 這裡的 JS 會載入目前正在瀏覽的網頁。
+   1. matches 因為 extension match pattern 的規則，改成所有頁面適用。
+4. permissions 賦予正在瀏覽的網頁可以使用麥克風的權限。
+
+程式行為
+
+1. 點擊右上方 mic icon 打開 popup 開啟麥克風: 啟動 Speech Recognition API，開始 Speech Recognition instance。
+2. 一次辨識就結束，所丈在辨識結束時，會判斷是否要繼續啟動。
+3. 可以透過語音「關閉」或「關掉」:停止 Speech Recognition API
+4. 點擊右上方 mic icon 打開 popup 停用麥克風: 停止 Speech Recognition API
 
 ## Google extension 的組成
 
@@ -132,7 +155,7 @@ Speech Recognition 辨識完句子後會先換行再開始 recode
 
 3. 在 menifest 註冊 page_action 來表現 點選 toolbar icon 的行為時，
   剛開始分不清楚 gray out 具體會出現的時機。
-  
+
   如果設置 content_script，
   在沒有 match 到符合的 URL 時，icon 會是 gray out 的狀態，反之亦然。
   但是如果點選 icon 要觸發 popup page，
